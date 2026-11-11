@@ -45,8 +45,8 @@ if ($selectedChildId > 0) {
 
     $attStmt = $pdo->prepare("
         SELECT * FROM attendance
-        WHERE student_id = ? AND MONTH(date) = ? AND YEAR(date) = ?
-        ORDER BY date DESC
+        WHERE student_id = ? AND MONTH(attendance_date) = ? AND YEAR(attendance_date) = ?
+        ORDER BY attendance_date DESC
     ");
     $attStmt->execute([$selectedChildId, $filterMonth, $filterYear]);
     $records = $attStmt->fetchAll();
@@ -182,8 +182,8 @@ $attPercentage = ($totalMarked > 0) ? round(($presentCount / $totalMarked) * 100
                         elseif ($status === 'Leave') $badgeClass = 'bg-info text-dark';
                     ?>
                         <tr>
-                            <td class="fw-bold text-dark"><?php echo date('d M Y', strtotime($r['date'])); ?></td>
-                            <td class="text-secondary"><?php echo date('l', strtotime($r['date'])); ?></td>
+                            <td class="fw-bold text-dark"><?php echo date('d M Y', strtotime($r['attendance_date'])); ?></td>
+                            <td class="text-secondary"><?php echo date('l', strtotime($r['attendance_date'])); ?></td>
                             <td>
                                 <span class="badge <?php echo $badgeClass; ?> px-2.5 py-1">
                                     <?php echo htmlspecialchars($status); ?>

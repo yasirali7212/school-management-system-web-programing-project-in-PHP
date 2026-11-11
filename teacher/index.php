@@ -40,7 +40,7 @@ $subjectCount = count(array_unique(array_column($assignments, 'subject_id')));
 $totalStudents = 0;
 if (!empty($assignedClassIds)) {
     $inClause = implode(',', array_map('intval', $assignedClassIds));
-    $totalStudents = (int)$pdo->query("SELECT COUNT(*) FROM students WHERE class_id IN ({$inClause}) AND status = 'Active'")->fetchColumn();
+    $totalStudents = (int)$pdo->query("SELECT COUNT(*) FROM students WHERE class_id IN ({$inClause}) AND status = 'active'")->fetchColumn();
 }
 
 // Today's Teaching Schedule
@@ -89,11 +89,14 @@ $announcements = $noticesStmt->fetchAll();
         <h2 class="page-title">Faculty Academic Desk</h2>
         <p class="page-subtitle">
             <?php echo htmlspecialchars($teacher['first_name'] . ' ' . $teacher['last_name']); ?> &bull; 
-            Employee ID: <strong><?php echo htmlspecialchars($teacher['employee_code']); ?></strong> &bull; 
-            Designation: <strong><?php echo htmlspecialchars($teacher['designation'] ?: 'Faculty Member'); ?></strong>
+            Employee ID: <strong><?php echo htmlspecialchars($teacher['employee_id'] ?? ''); ?></strong> &bull; 
+            Qualification: <strong><?php echo htmlspecialchars($teacher['qualification'] ?? 'Faculty Member'); ?></strong>
         </p>
     </div>
     <div class="d-flex gap-2">
+        <a href="<?php echo BASE_URL; ?>change_password.php" class="btn btn-outline-secondary btn-sm px-3">
+            <i class="bi bi-key me-1"></i> Change password
+        </a>
         <a href="<?php echo BASE_URL; ?>teacher/attendance.php" class="btn btn-primary btn-sm px-3">
             Mark attendance
         </a>

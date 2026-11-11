@@ -30,10 +30,10 @@ $attendanceChartData = ['Present' => 0, 'Absent' => 0, 'Late' => 0, 'Leave' => 0
 
 if ($pdo) {
     // 1. Total Active Students
-    $totalStudents = (int)$pdo->query("SELECT COUNT(*) FROM students WHERE status = 'Active'")->fetchColumn();
+    $totalStudents = (int)$pdo->query("SELECT COUNT(*) FROM students WHERE status = 'active'")->fetchColumn();
 
     // 2. Total Active Teachers
-    $totalTeachers = (int)$pdo->query("SELECT COUNT(*) FROM teachers WHERE status = 'Active'")->fetchColumn();
+    $totalTeachers = (int)$pdo->query("SELECT COUNT(*) FROM teachers t JOIN users u ON t.user_id = u.id WHERE u.status = 'active'")->fetchColumn();
 
     // 3. Total Classes and Sections
     $totalClasses = (int)$pdo->query("SELECT COUNT(*) FROM classes")->fetchColumn();
@@ -54,7 +54,7 @@ if ($pdo) {
     $attStmt = $pdo->prepare("
         SELECT status, COUNT(*) as count 
         FROM attendance 
-        WHERE date = ? 
+        WHERE attendance_date = ? 
         GROUP BY status
     ");
     $attStmt->execute([$todayDate]);
@@ -78,7 +78,7 @@ if ($pdo) {
         FROM students s
         JOIN classes c ON s.class_id = c.id
         JOIN sections sec ON s.section_id = sec.id
-        WHERE s.status = 'Active'
+        WHERE s.status = 'active'
         ORDER BY s.id DESC 
         LIMIT 5
     ")->fetchAll();

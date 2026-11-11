@@ -11,7 +11,7 @@ requireRole('parent');
 $pdo = getDB();
 
 $notices = $pdo->query("
-    SELECT a.*, u.name as author_name
+    SELECT a.*, u.username as author_name
     FROM announcements a
     JOIN users u ON a.created_by = u.id
     WHERE a.target_role IN ('all', 'parent')

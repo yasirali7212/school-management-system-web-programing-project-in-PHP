@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Fetch Announcements
 $notices = $pdo->query("
-    SELECT a.*, u.name as author_name
+    SELECT a.*, u.username as author_name
     FROM announcements a
     JOIN users u ON a.created_by = u.id
     ORDER BY a.created_at DESC

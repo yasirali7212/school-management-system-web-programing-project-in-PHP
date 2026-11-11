@@ -87,6 +87,12 @@ function isActive($page, $dir = null) {
                 <span>Analytics &amp; reports</span>
             </a>
 
+            <div class="menu-category">System &amp; security</div>
+            <a href="<?php echo BASE_URL; ?>admin/users.php" class="nav-item-custom <?php echo isActive('users.php', 'admin'); ?>">
+                <i class="bi bi-shield-lock"></i>
+                <span>Accounts &amp; credentials</span>
+            </a>
+
         <?php elseif ($role === 'teacher'): ?>
             <!-- ================= TEACHER NAVIGATION ================= -->
             <div class="menu-category">Faculty desk</div>
@@ -176,8 +182,12 @@ function isActive($page, $dir = null) {
             </a>
         <?php endif; ?>
 
-        <!-- Logout Link -->
+        <!-- Account Utilities & Logout -->
         <div class="mt-4 pt-3 border-top border-white border-opacity-10">
+            <a href="<?php echo BASE_URL; ?>change_password.php" class="nav-item-custom <?php echo isActive('change_password.php'); ?>" style="color: #94a3b8;">
+                <i class="bi bi-key"></i>
+                <span>Change password</span>
+            </a>
             <a href="<?php echo BASE_URL; ?>logout.php" class="nav-item-custom text-secondary" style="color: #94a3b8;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign out</span>

@@ -23,7 +23,7 @@ $cStmt = $pdo->prepare("
     FROM students s
     JOIN classes c ON s.class_id = c.id
     JOIN sections sec ON s.section_id = sec.id
-    WHERE s.parent_id = ? AND s.status = 'Active'
+    WHERE s.parent_id = ? AND s.status = 'active'
     ORDER BY s.id ASC
 ");
 $cStmt->execute([$parentId]);
@@ -57,11 +57,14 @@ $notices = $pdo->query("
     <div>
         <h2 class="page-title">Guardian Overview</h2>
         <p class="page-subtitle">
-            Guardian: <strong><?php echo htmlspecialchars($parent['father_name'] ?: $currentUser['name']); ?></strong> &bull; 
+            Guardian: <strong><?php echo htmlspecialchars($parent['father_name'] ?: $currentUser['username']); ?></strong> &bull; 
             Enrolled children monitoring &bull; Session <?php echo APP_YEAR; ?>
         </p>
     </div>
     <div class="d-flex gap-2">
+        <a href="<?php echo BASE_URL; ?>change_password.php" class="btn btn-outline-secondary btn-sm px-3">
+            <i class="bi bi-key me-1"></i> Change password
+        </a>
         <a href="<?php echo BASE_URL; ?>parent/fees.php" class="btn btn-outline-secondary btn-sm px-3">
             Fee vouchers
         </a>

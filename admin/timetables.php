@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $allClasses = $pdo->query("SELECT * FROM classes ORDER BY id ASC")->fetchAll();
 $allSections = $pdo->query("SELECT * FROM sections ORDER BY section_name ASC")->fetchAll();
 $allSubjects = $pdo->query("SELECT * FROM subjects ORDER BY subject_name ASC")->fetchAll();
-$allTeachers = $pdo->query("SELECT id, first_name, last_name, employee_code FROM teachers WHERE status = 'Active' ORDER BY first_name ASC")->fetchAll();
+$allTeachers = $pdo->query("SELECT t.id, t.first_name, t.last_name, t.employee_id FROM teachers t JOIN users u ON t.user_id = u.id WHERE u.status = 'active' ORDER BY t.first_name ASC")->fetchAll();
 
 // Selected Class & Section
 $selectedClassId = (int)($_GET['class_id'] ?? ($allClasses[0]['id'] ?? 0));
@@ -263,7 +263,7 @@ $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
                         <select name="teacher_id" class="form-select form-select-sm" required>
                             <option value="">-- Assign Faculty Member --</option>
                             <?php foreach ($allTeachers as $tc): ?>
-                                <option value="<?php echo $tc['id']; ?>"><?php echo htmlspecialchars($tc['first_name'] . ' ' . $tc['last_name']); ?> (<?php echo htmlspecialchars($tc['employee_code']); ?>)</option>
+                                <option value="<?php echo $tc['id']; ?>"><?php echo htmlspecialchars($tc['first_name'] . ' ' . $tc['last_name']); ?> (<?php echo htmlspecialchars($tc['employee_id']); ?>)</option>
                             <?php endforeach; ?>
                         </select>
                     </div>

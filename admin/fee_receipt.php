@@ -21,7 +21,7 @@ if ($paymentId > 0) {
         SELECT p.*, f.student_id, f.fee_title, f.month, f.year, f.amount as invoice_amount, 
                f.discount, f.fine, f.paid_amount as total_paid, f.status as fee_status, f.due_date,
                s.admission_no, s.roll_no, s.first_name, s.last_name, c.class_name, sec.section_name,
-               par.father_name, par.phone as parent_phone, u.name as cashier_name
+               par.father_name, par.phone as parent_phone, u.username as cashier_name
         FROM payments p
         JOIN fees f ON p.fee_id = f.id
         JOIN students s ON f.student_id = s.id
@@ -52,7 +52,7 @@ if ($paymentId > 0) {
     if ($fee) {
         // Fetch latest payment if exists
         $lpStmt = $pdo->prepare("
-            SELECT p.*, u.name as cashier_name
+            SELECT p.*, u.username as cashier_name
             FROM payments p
             LEFT JOIN users u ON p.received_by = u.id
             WHERE p.fee_id = ?

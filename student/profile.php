@@ -60,6 +60,12 @@ $student = $stStmt->fetch();
                         <div class="mb-2"><span class="text-muted">Status:</span> <span class="badge bg-success-subtle text-success">Active Enrolled</span></div>
                         <div><span class="text-muted">Academic Year:</span> <strong class="text-dark"><?php echo APP_YEAR; ?></strong></div>
                     </div>
+
+                    <div class="mt-3 pt-3 border-top">
+                        <a href="<?php echo BASE_URL; ?>change_password.php" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="bi bi-key me-1"></i> Change Password
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

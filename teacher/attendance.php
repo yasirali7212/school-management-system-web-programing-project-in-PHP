@@ -46,12 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $pdo->beginTransaction();
             $upsertStmt = $pdo->prepare("
-                INSERT INTO attendance (student_id, class_id, section_id, date, status, remarks, marked_by)
+                INSERT INTO attendance (student_id, class_id, section_id, attendance_date, status, remarks, recorded_by)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 ON DUPLICATE KEY UPDATE 
                     status = VALUES(status),
                     remarks = VALUES(remarks),
-                    marked_by = VALUES(marked_by)
+                    recorded_by = VALUES(recorded_by)
             ");
 
             foreach ($attendanceData as $studentId => $status) {
@@ -89,7 +89,7 @@ if ($selectedClassId > 0 && $selectedSectionId > 0) {
     $stStmt = $pdo->prepare("
         SELECT id, admission_no, roll_no, first_name, last_name, gender, photo
         FROM students
-        WHERE class_id = ? AND section_id = ? AND status = 'Active'
+        WHERE class_id = ? AND section_id = ? AND status = 'active'
         ORDER BY roll_no ASC, first_name ASC
     ");
     $stStmt->execute([$selectedClassId, $selectedSectionId]);
@@ -99,7 +99,7 @@ if ($selectedClassId > 0 && $selectedSectionId > 0) {
     $attStmt = $pdo->prepare("
         SELECT student_id, status, remarks
         FROM attendance
-        WHERE class_id = ? AND section_id = ? AND date = ?
+        WHERE class_id = ? AND section_id = ? AND attendance_date = ?
     ");
     $attStmt->execute([$selectedClassId, $selectedSectionId, $selectedDate]);
     while ($row = $attStmt->fetch()) {

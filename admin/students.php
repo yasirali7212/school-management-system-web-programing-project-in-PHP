@@ -345,6 +345,9 @@ if ($action === 'edit' && $editId > 0) {
                                     <a href="<?php echo BASE_URL; ?>admin/student_view.php?id=<?php echo $st['id']; ?>" class="btn btn-outline-secondary" title="View Profile">
                                         <i class="bi bi-eye"></i>
                                     </a>
+                                    <a href="<?php echo BASE_URL; ?>admin/users.php?role=student&q=<?php echo urlencode($st['admission_no']); ?>" class="btn btn-outline-secondary" title="Manage Login Credentials">
+                                        <i class="bi bi-key"></i>
+                                    </a>
                                     <button class="btn btn-outline-primary edit-student-btn" 
                                             data-id="<?php echo $st['id']; ?>"
                                             data-first="<?php echo htmlspecialchars($st['first_name']); ?>"

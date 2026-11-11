@@ -196,6 +196,9 @@ $teachers = $pdo->query("
                             <td><span class="fw-bold text-success"><?php echo formatCurrency($t['salary']); ?></span></td>
                             <td class="text-end">
                                 <div class="btn-group btn-group-sm">
+                                    <a href="<?php echo BASE_URL; ?>admin/users.php?role=teacher&q=<?php echo urlencode($t['employee_id']); ?>" class="btn btn-outline-secondary" title="Manage Login Credentials">
+                                        <i class="bi bi-key"></i>
+                                    </a>
                                     <button class="btn btn-outline-primary edit-teacher-btn"
                                             data-id="<?php echo $t['id']; ?>"
                                             data-first="<?php echo htmlspecialchars($t['first_name']); ?>"

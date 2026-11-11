@@ -21,7 +21,7 @@ $enrollmentStats = $pdo->query("
            COUNT(s.id) as total_students,
            SUM(CASE WHEN s.gender = 'Male' THEN 1 ELSE 0 END) as male_count,
            SUM(CASE WHEN s.gender = 'Female' THEN 1 ELSE 0 END) as female_count,
-           SUM(CASE WHEN s.status = 'Active' THEN 1 ELSE 0 END) as active_count
+           SUM(CASE WHEN s.status = 'active' THEN 1 ELSE 0 END) as active_count
     FROM classes c
     LEFT JOIN students s ON s.class_id = c.id
     GROUP BY c.id, c.class_name
@@ -37,7 +37,7 @@ $attStmt = $pdo->prepare("
            SUM(CASE WHEN a.status = 'Late' THEN 1 ELSE 0 END) as late_count,
            SUM(CASE WHEN a.status = 'Leave' THEN 1 ELSE 0 END) as leave_count
     FROM classes c
-    LEFT JOIN attendance a ON (a.class_id = c.id AND a.date = ?)
+    LEFT JOIN attendance a ON (a.class_id = c.id AND a.attendance_date = ?)
     GROUP BY c.id, c.class_name
     ORDER BY c.id ASC
 ");

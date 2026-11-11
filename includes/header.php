@@ -81,9 +81,13 @@ $pageTitle = $pageTitle ?? APP_NAME;
                                 <div class="text-muted" style="font-size: 0.75rem;"><?php echo ucfirst(htmlspecialchars($currentUser['role'])); ?> account</div>
                             </li>
                             <?php if ($currentUser['role'] === 'student'): ?>
-                                <li><a class="dropdown-item py-2" href="<?php echo BASE_URL; ?>student/profile.php">My profile</a></li>
+                                <li><a class="dropdown-item py-2" href="<?php echo BASE_URL; ?>student/profile.php"><i class="bi bi-person me-2 text-secondary"></i>My profile</a></li>
+                            <?php elseif ($currentUser['role'] === 'admin'): ?>
+                                <li><a class="dropdown-item py-2" href="<?php echo BASE_URL; ?>admin/users.php"><i class="bi bi-shield-lock me-2 text-secondary"></i>Accounts &amp; credentials</a></li>
                             <?php endif; ?>
-                            <li><a class="dropdown-item py-2 text-danger" href="<?php echo BASE_URL; ?>logout.php">Sign out</a></li>
+                            <li><a class="dropdown-item py-2" href="<?php echo BASE_URL; ?>change_password.php"><i class="bi bi-key me-2 text-secondary"></i>Change password</a></li>
+                            <li><hr class="dropdown-divider my-1"></li>
+                            <li><a class="dropdown-item py-2 text-danger" href="<?php echo BASE_URL; ?>logout.php"><i class="bi bi-box-arrow-right me-2"></i>Sign out</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
