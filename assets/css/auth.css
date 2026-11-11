@@ -1,0 +1,106 @@
+/* ==========================================================
+   Zenith International Academy - Responsive Portal Styles
+   ========================================================== */
+
+@layer base {
+    html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    body {
+        overscroll-behavior: none;
+    }
+    main > :first-child {
+        margin-top: 0 !important;
+    }
+    main > :last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.4);
+    border-radius: 9999px;
+}
+
+/* Library Wallpaper Background with Elegant Ambient Dark Gradient */
+.auth-wallpaper-bg {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    background-image: 
+        radial-gradient(circle at 50% 30%, rgba(15, 23, 42, 0.48) 0%, rgba(15, 23, 42, 0.78) 100%),
+        url('../images/campus-library-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Premium Frosted Glass Dual-Chamber Canvas */
+.auth-glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Interactive Role Elements */
+.role-tab, .role-btn {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.role-tab:active, .role-btn:active {
+    transform: scale(0.98);
+}
+
+/* Ambient Glow Elements */
+.ambient-blur {
+    pointer-events: none;
+    border-radius: 9999px;
+    filter: blur(64px);
+}
+
+/* Smooth Focus Rings */
+input:focus, button:focus {
+    outline: none;
+}
+
+/* Touch Friendly Mobile Adjustments */
+@media (max-width: 768px) {
+    .px-margin {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .py-space-xl {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    .p-space-lg, .p-space-xl {
+        padding: 1.25rem !important;
+    }
+    .auth-wallpaper-bg {
+        background-attachment: scroll; /* Mobile optimization */
+    }
+}
+
+/* Responsive pod ordering & sizing */
+@media (max-width: 1024px) {
+    .showcase-pod {
+        order: 2; /* Form first on mobile */
+    }
+    .workspace-chamber {
+        order: 1;
+    }
+}
